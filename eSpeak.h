@@ -7,7 +7,9 @@
 #include <malloc.h>
 #include <speak_lib.h>
 
-
+/*
+I've modified this program a bit: I added a function and changed char[number] to char*.
+*/
 
 espeak_POSITION_TYPE position_type;
 espeak_AUDIO_OUTPUT output;
@@ -36,7 +38,6 @@ char Voice[] = {"default"};
     Voice: Refer to speak_lib.h 
 */
 
-//char text[50] = {"Hello there! How ya doin?"};
 unsigned int Size,position=0, end_position=0, flags=espeakCHARS_AUTO, *unique_identifier;
 
 /*    
@@ -86,7 +87,7 @@ unsigned int Size,position=0, end_position=0, flags=espeakCHARS_AUTO, *unique_id
 
 
 
-int saySomething(char* text) 
+void saySomething(char* text) 
 {
   position=0; end_position=0; flags=espeakCHARS_AUTO;
     output = AUDIO_OUTPUT_PLAYBACK;
@@ -94,10 +95,9 @@ int saySomething(char* text)
     espeak_Initialize(output, Buflength, path, Options ); 
     espeak_SetVoiceByName(Voice);
     Size = strlen(text)+1;    
-    printf("Saying  '%s'",text);
+
     espeak_Synth( text, Size, position, position_type, end_position, flags,
     unique_identifier, user_data );
     espeak_Synchronize( );
-    printf("\n:Done\n"); 
-    return 0;
+
 }
