@@ -89,7 +89,7 @@ unsigned int Size,position=0, end_position=0, flags=espeakCHARS_AUTO, *unique_id
 
 void saySomething(char* text) 
 {
-  position=0; end_position=0; flags=espeakCHARS_AUTO;
+    position=0; end_position=0; flags=espeakCHARS_AUTO;
     output = AUDIO_OUTPUT_PLAYBACK;
     int I, Run = 1, L;    
     espeak_Initialize(output, Buflength, path, Options ); 
