@@ -1,5 +1,5 @@
 /* 
-   TITLE: Simple C/C++ Program showing use of speak_lib.h 
+   TITLE: Simple C/C++ Program that shows the use of speak_lib.h 
    AUTHOR:Dhananjay Singh
    LICENSE: GPLv2
 */
@@ -83,21 +83,24 @@ unsigned int Size,position=0, end_position=0, flags=espeakCHARS_AUTO, *unique_id
                     	   EE_INTERNAL_ERROR.
 */
 
-
-
-
-
+// The function to say something.
 void saySomething(char* text) 
 {
+    // We set the primary options, such as flags, position etc.
     position=0; end_position=0; flags=espeakCHARS_AUTO;
     output = AUDIO_OUTPUT_PLAYBACK;
-    int I, Run = 1, L;    
+    int I, Run = 1, L;
+    
+    // Now we initialize espeak.
     espeak_Initialize(output, Buflength, path, Options ); 
+    // And set the voice;
     espeak_SetVoiceByName(Voice);
+    
+    // Now we set Size to match the length of the actual text.
     Size = strlen(text)+1;    
-
-    espeak_Synth( text, Size, position, position_type, end_position, flags,
-    unique_identifier, user_data );
+   
+    // And lastly we use the espeak_Synth function and synchronize to tell the computer what to say and how to say it.
+    espeak_Synth( text, Size, position, position_type, end_position, flags, unique_identifier, user_data );
     espeak_Synchronize( );
 
 }
